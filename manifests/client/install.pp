@@ -7,7 +7,9 @@ class ssh::client::install {
   assert_private()
 
   if $ssh::client::client_package_name {
-    stdlib::ensure_packages([
+    # Not compatible with stdlib < 9.
+    # stdlib::ensure_packages ([
+    ensure_packages ([
         $ssh::client::client_package_name,
       ], {
         'ensure' => $ssh::client::ensure,
